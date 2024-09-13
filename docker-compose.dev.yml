@@ -1,0 +1,33 @@
+services:
+
+  backend-dev:
+    container_name: backend-dev
+    build:
+      context: backend
+      dockerfile: Dockerfile.dev
+    env_file: .env.dev.example
+    ports:
+      - "4000:3000"
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/app
+    networks:
+      - backend_network
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: unless-stopped
+    env_file: .env.example
+    volumes:
+      - postgres-data:/data/postgres
+    networks:
+      - backend_network
+
+volumes:
+  postgres-data:
+
+networks:
+  backend_network:
