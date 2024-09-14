@@ -13,7 +13,9 @@ export default () => ({
     password: process.env.POSTGRES_PASSWORD || 'student',
     database: process.env.POSTGRES_DB || 'kupipodariday',
     entities: [User, Wish, Wishlist, Offer],
-    synchronize: process.env.MODE === 'development',
+    // synchronize: process.env.MODE === 'development',
+    // TODO: Для продакшн версии использовать migrations
+    synchronize: true,
   },
   jwt_secret: 'secret-key',
 });
