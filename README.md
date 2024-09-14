@@ -20,4 +20,4 @@ IP: `51.250.20.122`
 
 `docker compose --file docker-compose.yml up -d`
 
-В случае изменения основного домена приложения необходимо скорректировать URL в `frontend/src/utils/constants.js`.
+Перед сборкой необходимо скорректировать URL в `frontend/src/utils/constants.js` (`http://localhost:4000` для разработки и адрес домена, где развернут бэкенда для продакшн-среды).
