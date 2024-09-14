@@ -9,6 +9,15 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('port');
 
+  // Для разработки меняем политику CORS, разрешаем запросы с домена для разработки
+  if (process.env.MODE === 'development') {
+    app.enableCors({
+      origin: process.env.REACT_APP_FRONTEND_URL,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      credentials: true,
+    });
+  }
+
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await app.listen(port);
 }
