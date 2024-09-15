@@ -7,7 +7,7 @@ RUN npm run build
 RUN rm -rf ./src
 RUN rm -rf ./node_modules
 
-FROM nginx:1.23.1-alpine AS production
+FROM nginx:latest AS production
 WORKDIR /app
 COPY --from=build /app/build /usr/share/nginx/html/
 COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d/
